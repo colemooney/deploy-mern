@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -11,7 +12,7 @@ app.use(cors());
 require("./models/quote");
 
 mongoose
-  .connect(`mongodb://127.0.0.1:27017/deploy-mern-db`, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -19,13 +20,22 @@ mongoose
   .catch((err) => console.log(err));
 
 //middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //import routes
 require("./routes/quoteRoute.js")(app);
 
 const PORT = process.env.PORT || 5000;
+
+const path = require("path");
+
+// Step 1:
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+// Step 2:
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);

@@ -1,15 +1,25 @@
 import React, { useEffect, useState } from "react";
+import Box from '@mui/material/Box';
+
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
 import axios from "axios";
 import Quote from "../component/quote";
 import "../quote.css";
 
 const QuotePage = () => {
+
+  const [quote, setQuote] = React.useState("");
+  const [author, setAuthor] = React.useState("");
+
   const [quotesList, setQuotesList] = useState([]);
-  const [clickSubmit, setClickSubmit] = useState(false);
+  
 
   useEffect(() => {
     renderQuotes();
-  }, [clickSubmit]);
+  }, []);
   const renderQuotes = () => {
     axios
       .get(`/quotes/get`)
@@ -23,10 +33,7 @@ const QuotePage = () => {
       });
   };
 
-  const submitNewQuote = (e) => {
-    e.preventDefault();
-    let author = document.getElementById("author").value;
-    let quote = document.getElementById("quote").value;
+  const submitNewQuote = () => {
     console.log(author, quote);
     axios
       .post(`/quotes/post`, {
@@ -41,33 +48,62 @@ const QuotePage = () => {
           console.log(error);
         }
       );
-    setClickSubmit(!clickSubmit);
-    document.getElementById("form").reset();
+    
   };
 
   return (
     <>
       <div className="page">
-        <div className="form-quote">
-          <form id="form">
-            <div>
-              <label>Enter your favorite quote:</label>
-              <input name="quote" id="quote" type="text" required></input>
-            </div>
-            <div>
-              <label>Who is the author</label>
-              <input name="author" id="author" type="text" required></input>
-            </div>
-
-            <button
+        <Box
+        id="form"
+        component="form"
+        sx={{
+          '& .MuiTextField-root': { m: 1, width: '25ch' },
+          display: "flex",
+          alignContent: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          
+        }}
+        noValidate
+        autoComplete="off"
+        >
+          <FormControl fullWidth sx={{ m: 1 }}>
+          <InputLabel htmlFor="outlined-adornment-amount">Quote here</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-amount"
+            className="quote"
+            startAdornment={<InputAdornment position="start"></InputAdornment>}
+            label="Quote"
+            name="quote" 
+            type="text"
+            onChange={(event) => {
+              setAuthor(event.target.value);
+              }}
+          />
+        </FormControl>
+        <FormControl fullWidth sx={{ m: 1 }}>
+          <InputLabel htmlFor="outlined-adornment-amount">Author here</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-amount"
+            className="author"
+            name="author"
+            startAdornment={<InputAdornment position="start"></InputAdornment>}
+            label="Author"
+            onChange={(event) => {
+              setQuote(event.target.value);
+              }}
+          />
+        </FormControl>
+        <button
               name="button"
               type="submit"
               onClick={(e) => submitNewQuote(e)}
             >
               Submit
             </button>
-          </form>
-        </div>
+        </Box>
+        
         <div>
           {quotesList.length > 0
             ? quotesList.map((ele) => {

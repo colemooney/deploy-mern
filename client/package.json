@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "https://coleamooney.herokuapp.com/",
   "dependencies": {
     "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.2.3",

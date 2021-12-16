@@ -7,7 +7,7 @@ const Quote = (props) => {
     <>
       <div className="quote-box">
         <div className="quoter-box">
-          <p>{quote}</p>
+          <p>"{quote}"</p>
         </div>
         <div className="author-box">
           <p> - {author}</p>

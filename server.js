@@ -10,6 +10,7 @@ app.use(cors());
 
 //import your models
 require("./models/quote");
+require("./models/user");
 
 mongoose
   .connect(process.env.MONGODB_URI, {
@@ -25,6 +26,7 @@ app.use(express.json());
 
 //import routes
 require("./routes/quoteRoute.js")(app);
+require("./routes/userRoute.js")(app);
 
 const PORT = process.env.PORT || 5000;
 

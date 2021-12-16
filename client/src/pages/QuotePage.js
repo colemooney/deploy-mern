@@ -69,7 +69,7 @@ const QuotePage = () => {
         autoComplete="off"
         >
           <FormControl fullWidth sx={{ m: 1 }}>
-          <InputLabel htmlFor="outlined-adornment-amount">Quote here</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-amount">Quote</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
             className="quote"
@@ -78,12 +78,12 @@ const QuotePage = () => {
             name="quote" 
             type="text"
             onChange={(event) => {
-              setAuthor(event.target.value);
+              setQuote(event.target.value);
               }}
           />
         </FormControl>
         <FormControl fullWidth sx={{ m: 1 }}>
-          <InputLabel htmlFor="outlined-adornment-amount">Author here</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-amount">Author</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
             className="author"
@@ -91,7 +91,7 @@ const QuotePage = () => {
             startAdornment={<InputAdornment position="start"></InputAdornment>}
             label="Author"
             onChange={(event) => {
-              setQuote(event.target.value);
+              setAuthor(event.target.value);
               }}
           />
         </FormControl>

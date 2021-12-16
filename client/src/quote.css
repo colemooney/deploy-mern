@@ -9,7 +9,7 @@
 .author-box {
   display: flex;
   justify-content: flex-end;
-  background: yellow;
+  background: light grey;
   min-width: fit-content;
   margin-left: 65%;
   padding-right: 20px;
@@ -26,10 +26,11 @@ form {
   margin: 20px;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
+  width: 50%;
   align-content: center;
-  background-color: rgba(137, 43, 226, 0.712);
+  background-color: rgba(110, 185, 190, 0.712);
   padding: 20px;
+  border-radius: 25px;
 }
 form * {
   padding: 10px;

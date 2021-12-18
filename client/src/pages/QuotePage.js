@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
+import newLogo from "../newLogo.svg";
 
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -68,6 +69,14 @@ const QuotePage = () => {
         noValidate
         autoComplete="off"
         >
+          <img 
+            src={newLogo} 
+            alt="new logo" 
+            width={700}
+            height={300}
+            
+          
+          />
           <FormControl fullWidth sx={{ m: 1 }}>
           <InputLabel htmlFor="outlined-adornment-amount">Quote</InputLabel>
           <OutlinedInput

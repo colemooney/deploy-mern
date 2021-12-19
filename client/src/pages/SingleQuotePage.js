@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
 import Box from '@mui/material/Box';
-import newLogo from "../newLogo.svg";
+
 
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,7 +11,7 @@ import Quote from "../component/quote";
 import "../quote.css";
 
 const QuotePage = () => {
-
+    
   const [quote, setQuote] = React.useState("");
   const [author, setAuthor] = React.useState("");
 
@@ -24,7 +23,7 @@ const QuotePage = () => {
   }, []);
   const renderQuotes = () => {
     axios
-      .get(`/quotes/get`)
+      .get(`/id:/get`)
       .then((res) => {
         setQuotesList(res.data);
         console.log("setQuoteList");
@@ -38,7 +37,7 @@ const QuotePage = () => {
   const submitNewQuote = () => {
     console.log(author, quote);
     axios
-      .post(`/quotes/post`, {
+      .post(`/id:/post`, {
         quote: quote,
         author: author,
       })
@@ -50,7 +49,8 @@ const QuotePage = () => {
           console.log(error);
         }
       );
-    
+      
+
   };
 
   return (
@@ -70,14 +70,7 @@ const QuotePage = () => {
         noValidate
         autoComplete="off"
         >
-          <img 
-            src={newLogo} 
-            alt="new logo" 
-            width={700}
-            height={300}
-            
           
-          />
           <FormControl fullWidth sx={{ m: 1 }}>
           <InputLabel htmlFor="outlined-adornment-amount">Quote</InputLabel>
           <OutlinedInput
@@ -85,6 +78,7 @@ const QuotePage = () => {
             className="quote"
             startAdornment={<InputAdornment position="start"></InputAdornment>}
             label="Quote"
+            defaultValue= 
             name="quote" 
             type="text"
             onChange={(event) => {
@@ -114,19 +108,7 @@ const QuotePage = () => {
             </button>
         </Box>
         
-        <div>
-          {quotesList.length > 0
-            ? quotesList.map((ele) => {
-                console.log("hey");
-                return (
-                  <div key={ele._id}>
-                    <Quote quote={ele.quote} author={ele.author} />
-                    <Link to={`/id:${ele._id}`}>Edit</Link>
-                  </div>
-                );
-              })
-            : null}
-        </div>
+        
       </div>
     </>
   );

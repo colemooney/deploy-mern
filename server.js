@@ -27,6 +27,7 @@ app.use(express.json());
 //import routes
 require("./routes/quoteRoute.js")(app);
 require("./routes/userRoute.js")(app);
+require("./routes/singleQuoteRoute.js")(app);
 
 const PORT = process.env.PORT || 5000;
 

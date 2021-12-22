@@ -10,8 +10,8 @@ import axios from "axios";
 import Quote from "../component/quote";
 import "../quote.css";
 
-const QuotePage = () => {
-    
+const SingleQuotePage = () => {
+   
   const [quote, setQuote] = React.useState("");
   const [author, setAuthor] = React.useState("");
 
@@ -22,11 +22,13 @@ const QuotePage = () => {
     renderQuotes();
   }, []);
   const renderQuotes = () => {
+      const { id } = this.props.match.params;
+      console.log(id);
     axios
-      .get(`/id:/get`)
+      .get(`/${id}/get`)
       .then((res) => {
         setQuotesList(res.data);
-        console.log("setQuoteList");
+        console.log(id);
         console.log(res.data);
       })
       .catch((err) => {
@@ -56,7 +58,8 @@ const QuotePage = () => {
   return (
     <>
       <div className="page">
-        <Box
+          <h1> hi </h1>
+        {/* <Box
         id="form"
         component="form"
         sx={{
@@ -78,7 +81,7 @@ const QuotePage = () => {
             className="quote"
             startAdornment={<InputAdornment position="start"></InputAdornment>}
             label="Quote"
-            defaultValue= 
+            
             name="quote" 
             type="text"
             onChange={(event) => {
@@ -108,10 +111,10 @@ const QuotePage = () => {
             </button>
         </Box>
         
-        
+         */}
       </div>
     </>
   );
 };
 
-export default QuotePage;
+export default SingleQuotePage;

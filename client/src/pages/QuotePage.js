@@ -121,7 +121,10 @@ const QuotePage = () => {
                 return (
                   <div key={ele._id}>
                     <Quote quote={ele.quote} author={ele.author} />
-                    <Link to={`/id:${ele._id}`}>Edit</Link>
+                    <Link to={{
+                      pathname: `/${ele._id}/get`,
+                      state: ele
+                      }}>Edit</Link>
                   </div>
                 );
               })

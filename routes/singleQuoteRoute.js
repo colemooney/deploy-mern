@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 const Quote = mongoose.model("quotes");
 
 module.exports = (app) => {
-  app.get(`/:id`, async (req, res) => {
+  app.get(`/${id}/get`, async (req, res) => {
     try {
-        const id = req.params.id;
+        console.log("edit page");
+      const id = req.params.id;
       const quotes = await Quote.findById({id});
       return res.send(quotes);
     } catch (error) {
@@ -12,7 +13,7 @@ module.exports = (app) => {
     }
   });
 
-  app.post(`/id:`, async (req, res) => {
+  app.post(`/${id}/post`, async (req, res) => {
     try {
       const id = req.params.id;
       Quote.findById({id})

@@ -4,10 +4,16 @@ const Quote = mongoose.model("quotes");
 module.exports = (app) => {
   app.get(`/${id}/get`, async (req, res) => {
     try {
-        console.log("edit page");
-      const id = req.params.id;
-      const quotes = await Quote.findById({id});
-      return res.send(quotes);
+        const id = req.params.id;
+        const quotes = await Quote.findById({id});
+        console.log("quotes-------");
+      
+      const quoteData = new Quote({
+        quote: req.params.quote,
+        author: req.params.author,
+      });
+      
+      return res.send(quoteData);
     } catch (error) {
       return res.send(error);
     }

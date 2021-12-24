@@ -13,7 +13,7 @@ function App() {
           <QuotePage />
           
         </Route>
-        <Route path="/id:/get">
+        <Route path="/:id/get">
           <SingleQuotePage />
           
         </Route>

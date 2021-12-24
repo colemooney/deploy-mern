@@ -123,7 +123,7 @@ const QuotePage = () => {
                     <Quote quote={ele.quote} author={ele.author} />
                     <Link to={{
                       pathname: `/${ele._id}/get`,
-                      state: ele
+                      state: quotesList
                       }}>Edit</Link>
                   </div>
                 );

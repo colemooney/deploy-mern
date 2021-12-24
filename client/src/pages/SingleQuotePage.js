@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Box from '@mui/material/Box';
-
+import React, { useEffect, useState, state } from "react";
+ import Box from '@mui/material/Box';
+import { useParams, Link } from "react-router-dom";
 
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -11,24 +11,25 @@ import Quote from "../component/quote";
 import "../quote.css";
 
 const SingleQuotePage = () => {
-   
-  const [quote, setQuote] = React.useState("");
+
+   const params = useParams();
+   const [quote, setQuote] = React.useState("");
   const [author, setAuthor] = React.useState("");
-
-  const [quotesList, setQuotesList] = useState([]);
   
+  const [quotesList, setQuotesList] = useState([]);
 
+  
   useEffect(() => {
     renderQuotes();
   }, []);
   const renderQuotes = () => {
-      const { id } = this.props.match.params;
-      console.log(id);
+      console.log("======", params);
+      
     axios
-      .get(`/${id}/get`)
+      .get(`/${params.id}/get`, { quote })
       .then((res) => {
         setQuotesList(res.data);
-        console.log(id);
+        
         console.log(res.data);
       })
       .catch((err) => {
@@ -59,7 +60,10 @@ const SingleQuotePage = () => {
     <>
       <div className="page">
           <h1> hi </h1>
-        {/* <Box
+          <p>  </p>
+
+          
+        <Box
         id="form"
         component="form"
         sx={{
@@ -111,7 +115,7 @@ const SingleQuotePage = () => {
             </button>
         </Box>
         
-         */}
+         
       </div>
     </>
   );

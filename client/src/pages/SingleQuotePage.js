@@ -1,13 +1,13 @@
-import React, { useEffect, useState, state } from "react";
+import React, { useEffect, useState } from "react";
  import Box from '@mui/material/Box';
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import axios from "axios";
-import Quote from "../component/quote";
+//import Quote from "../component/quote";
 import "../quote.css";
 
 const SingleQuotePage = () => {
@@ -16,21 +16,21 @@ const SingleQuotePage = () => {
    const [quote, setQuote] = React.useState("");
   const [author, setAuthor] = React.useState("");
   
-  const [quotesList, setQuotesList] = useState([]);
+  const [quotes, setQuotes] = useState([]);
 
   
   useEffect(() => {
     renderQuotes();
-  }, []);
+  });
   const renderQuotes = () => {
       console.log("======", params);
       
     axios
-      .get(`/${params.id}/get`, { quote })
+      .get(`/${params.id}/get`, { quotes })
       .then((res) => {
-        setQuotesList(res.data);
+        setQuotes(res.data);
         
-        console.log(res.data);
+        console.log("res.data", quotes);
       })
       .catch((err) => {
         console.log("ERR", err);

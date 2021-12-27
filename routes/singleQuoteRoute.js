@@ -2,27 +2,24 @@ const mongoose = require("mongoose");
 const Quote = mongoose.model("quotes");
 
 module.exports = (app) => {
-  app.get(`/${id}/get`, async (req, res) => {
+  app.get(`/:id/get`, async (req, res) => {
     try {
         const id = req.params.id;
         const quotes = await Quote.findById({id});
-        console.log("quotes-------");
+        console.log("quotes-------", req.params.id);
       
-      const quoteData = new Quote({
-        quote: req.params.quote,
-        author: req.params.author,
-      });
       
-      return res.send(quoteData);
+      
+      return res.send(quotes);
     } catch (error) {
       return res.send(error);
     }
   });
 
-  app.post(`/${id}/post`, async (req, res) => {
+  app.post(`/:id/post`, async (req, res) => {
     try {
-      const id = req.params.id;
-      Quote.findById({id})
+      
+      
       const quotePosted = new Quote({
         quote: req.body.quote,
         author: req.body.author,
